@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="http://logic-flow.org" target="_blank">
+  <a href="https://site.logic-flow.cn" target="_blank">
     <img
-      src="http://logic-flow.org/new-logo.png"
+      src="https://site.logic-flow.cn/logo.png"
       alt="LogicFlow logo"
-      width="250"
+      width="100"
     />
   </a>
 </p>
@@ -20,75 +20,63 @@
   </a>
 </p>
 
-
-简体中文 | [English](/README.en-us.md)
+简体中文 | [English](/README.en-US.md)
 
 LogicFlow 是一款流程图编辑框架，提供了一系列流程图交互、编辑所必需的功能和简单灵活的节点自定义、插件等拓展机制，方便我们快速在业务系统内满足类流程图的需求。
 
-## 特性
+## 核心能力
 
+- 可视化模型：通过 LogicFlow 提供的直观可视化界面，用户可以轻松创建、编辑和管理复杂的逻辑流程图。
+- 高可定制性：用户可以根据自己的需要定制节点、连接器和样式，创建符合特定用例的定制逻辑流程图。
+- 灵活易拓展: 内置提供丰富的插件，用户也可根据自身需求定制复杂插件实现业务需求。
+- 自执行引擎: 执行引擎支持浏览器端执行流程图逻辑，为无代码执行提供新思路。
+- 数据可转换：支持 LogicFlow 数据与 BPMN、Turbo 等各种后端执行引擎数据结构转换能力。
 
-- 🛠 高拓展性
-  
-  兼容各种产品自定义的流程编辑需求，绝大部分模块以插件的形式实现，支持各模块自由插拔。
+## 安装
 
-- 🚀 重执行
-  
-  流程图能完备的表达业务逻辑，不受流程引擎限制。
-
-- 🎯 专业
-  
-  专注于业务流程图编辑的框架
-
-## 使用
-
-### 安装
-
-```sh
+```shell
 # npm
 $ npm install @logicflow/core @logicflow/extension --save
 
+# yarn
+$ yarn add @logicflow/core @logicflow/extension
+
+# pnpm
+$ pnpm add @logicflow/core @logicflow/extension
 ```
 
-### 代码示例
+## 快速上手
 
-```js
-// 创建容器
+```html
+<!-- LogicFlow 容器 DOM-->
 <div id="container"></div>;
-
+```
+```typescript
 // 准备数据
 const data = {
   // 节点
   nodes: [
     {
-      id: 21,
+      id: '21',
       type: 'rect',
       x: 100,
       y: 200,
-      text: {
-        value: '矩形节点',
-        x: 100,
-        y: 200,
-      },
+      text: '矩形节点',
     },
     {
-      id: 50,
+      id: '50',
       type: 'circle',
       x: 300,
       y: 400,
-      text: {
-        value: '圆形节点',
-        x: 300,
-        y: 400,
-      },
+      text: '圆形节点',
     },
   ],
   // 边
   edges: [
     {
       type: 'polyline',
-      sourceNodeId: 50,
-      targetNodeId: 21,
+      sourceNodeId: '50',
+      targetNodeId: '21',
     },
   ],
 };
@@ -102,108 +90,41 @@ const lf = new LogicFlow({
 lf.render(data);
 ```
 
-## 文档
+## 相关文档
 
-[官方文档](http://logic-flow.org)
+[官方文档](https://site.logic-flow.cn/)
 
-- [快速上手](http://logic-flow.org/guide/start.html#安装)
-- [基础教程](http://logic-flow.org/guide/basic/logic-flow.html)
-- [进阶指南](http://logic-flow.org/guide/advance/theme.html)
-- [拓展](http://logic-flow.org/guide/extension/extension-components.html)
-- [示例](http://logic-flow.org/usage/bpmn.html)
+- [快速上手](https://site.logic-flow.cn/tutorial/get-started)
+- [图表示例](https://site.logic-flow.cn/examples)
+- [相关文章](https://site.logic-flow.cn/article/architecture-of-logicflow)
 
-非官方
+---
+- [更新日志](https://github.com/didi/LogicFlow/releases)
+- [issue模板](https://github.com/didi/LogicFlow/issues/new/choose)
 
-- [Vuejs3.x + Typescript 上手指南](https://www.yuque.com/fe-xiaoxin/zeots5)
-- [Vuejs3.x + Typescript 在线案例](https://1024code.com/collections/25)
+## [本地开发](/CONTRIBUTING.md)
 
-## 核心能力
+```shell
+# 安装项目依赖和初始化构建
+$ pnpm install
 
-### 流程图编辑器快速搭建
+# 进入到指定项目开发和调试
+cd packages/core
+pnpm run build:watch
 
-提供了一个流程图编辑所必需的各项能力，这也是 LogicFlow 的基础能力：
+# 启动 example 查看效果
+cd examples/feature-examples
+pnpm run start
+```
 
-- 图的绘制能力。基于 SVG 来绘制形状各异的节点和线，并提供了基础的节点（矩形、圆形、多边形等）和线（直线、折线、曲线）
-- 各类交互能力，让图动起来。根据节点、线、图的各类鼠标事件（hover、点击、拖拽等）做出反应。比如节点拖拽、拖拽创建边、线的调整、双击节点编辑文本等
-- 提升编辑效率的能力。提供网格、对齐线，上一步、下一步，键盘快捷键，图放大缩小等配套能力，帮助用户提升编辑效率
-- 提供了丰富的 API ，宿主研发通过 API 传参调用和监听事件的方式，与 LogicFlow 完成交互
+## 参与共建
 
-  下面是通过 LogicFlow 内置的节点和配套能力，做的流程图示例
-  ：
+如果希望参与到 LogicFlow 的开发中，请遵从我们的[贡献指南](/CONTRIBUTING.md)。如果你贡献度足够活跃，你可以申请成为社区协作者。
 
-    <image src="https://dpubstatic.udache.com/static/dpubimg/eEMT14E7BR/lfexample1.gif" width="500"/>
+<a href="https://github.com/didi/LogicFlow/graphs/contributors">
+<img src="https://raw.githubusercontent.com/didi/LogicFlow/master/CONTRIBUTORS.svg" alt="Contributors" />
+</a>
 
-### 基于业务场景拓展
+## 开源协议
 
-当基础能力无法满足业务需求的时候，便需要基于业务场景拓展。
-
-- 设置图上所有元素的样式，比如各种节点、线、锚点、箭头、对齐线的大小颜色等，满足对前端样式调整的需求
-- API 拓展。支持在 LogicFlow 上注册自定义的方法，比如通过 API 拓展提供图片下载的方法
-- 自定义节点、线。内置的矩形、圆形等图形类节点往往无法满足实际的业务需求，需要定义具有业务意义的节点。LogicFlow 提供了 的方式让用户定制具有自定义图形、业务数据的节点，比如流程审批场景中的 “审批” 节点
-- 拓展组件。LogicFlow 在 SVG 图层上提供了 HTML 层和一系列坐标转换逻辑，并支持在 HTML 层注册组件。宿主研发可以通过 LogicFlow 的 API，基于任何 View 框架开发组件，比如节点的右键菜单、控制面板等
-- 数据转换 adapter。LogicFlow 默认导出的图数据不一定适合所有业务，此时可以通过 adapter API，在图数据从 LogicFlow 输入、输出的时候做自定义转换，比如转换成 BPMN 规范的图数据
-- 内置部分拓展能力。基于上述拓展能力，我们还单独提供了 extension 的包，用来存放当前业务下沉淀出的具有通用性的节点、组件等，比如面向 BPMN 规范的节点和数据 adapter，默认菜单。注意 extension 可以单独安装，并支持按需引入
-
-基于上述拓展的能力，前端研发能够根据实际业务场景的需求，灵活的开发出所需的节点、组件等。下面有两个基于 LogicFlow 拓展能力做出的流程图：
-
-### BPMN应用demo
-
-示例地址：http://logic-flow.org/examples/#/extension/bpmn
-
-源码地址：https://github.com/didi/LogicFlow/tree/master/examples/src/pages/usage/bpmn
-
-![图片:bpmn](https://dpubstatic.udache.com/static/dpubimg/CS6S6q9Yxf/lfexample2.gif)
-
-
-#### 审批流应用demo
-
-示例地址：http://logic-flow.org/examples/#/usage/approve
-
-源码地址：https://github.com/didi/LogicFlow/tree/master/examples/src/pages/usage/approve
-
-![图片: 审批流](https://dpubstatic.udache.com/static/dpubimg/uBeSlMEytL/lfexample3.gif)
-
-#### vue 应用 demo
-
-源码地址 [https://github.com/xinxin93/logicflow_vue_demo](https://github.com/xinxin93/logicflow_vue_demo)
-
-![https://dpubstatic.udache.com/static/dpubimg/e35cef10-bb7c-4662-a494-f5aac024c092.gif](https://dpubstatic.udache.com/static/dpubimg/e35cef10-bb7c-4662-a494-f5aac024c092.gif)
-
-
-#### 作图工具示例
-
-LogicFlow不仅支持开发类似bpmn.js这种固定整体样式、更偏向生成数据在流程引擎可执行的流程图工具。也支持实现类似ProcessOn这种自由控制样式的作图工具。
-
-示例地址：[http://logic-flow.org/mvp/index.html](http://logic-flow.org/mvp/index.html)
-
-源码地址：[https://github.com/didi/LogicFlow/tree/master/site/mvp](https://github.com/didi/LogicFlow/tree/master/site/mvp)
-
-示例图如下:
-![logicflow-1.0-4.png](/docs/assets/images/LogicFlow-1.0-4.png)
-
-
-#### vue3 node-red风格示例
-
-源码地址: [https://github.com/Logic-Flow/logicflow-node-red-vue3](https://github.com/Logic-Flow/logicflow-node-red-vue3)
-
-![node-red](https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/core/node-red.png)
-
-#### 手绘风格插件示例
-
-源码地址: [https://github.com/towersxu/draft-flow](https://github.com/towersxu/draft-flow)
-
-![draft-flow](https://cdn.jsdelivr.net/gh/towersxu/draft-flow@latest/packages/website/public/redis.png)
-
-## 联系我们
-
-### 加入微信群
-
-添加微信号：logic-flow 加入用户群
-
-### 加入 QQ 群
-
-<image src="https://dpubstatic.udache.com/static/dpubimg/VMBzV7jhh8/qq.png" width="300"/>
-
-### 贡献代码
-
-LogicFlow对外持开放态度，不论是只修改文档的标点符号还是对LogicFlow的整体功能有大的重构我们都欢迎。对于您的每一个PR我们都会认真查看、回复、合并。详情见[LogicFlow贡献指南](https://github.com/didi/LogicFlow/blob/master/CONTRIBUTING.md)。
+该项目的代码和文档基于 [Apache-2.0 License](/LICENSE) 开源协议。

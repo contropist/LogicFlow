@@ -1,18 +1,31 @@
+# dependencies
 node_modules
-dist
-coverage
-types/*
-types
-*.DS_Store
+
+# production
 lib
-!packages/mvp/lib
-cjs
-esm
 es
-site-build
+dist
 output
+stats.html
+
+coverage
+types/**
+
+# misc
+.DS_Store
+.pnpm-*.log
+.idea
+.turbo
+npm-debug.log
+yarn-error.log
+
+/.github_token
+/TMP_CHANGELOG.md
+/.openai_token
+/.github_account
+
 logic-flow-docs.tar.gz
-*.log
-*/.eslintcache
-.eslintcache
-~*
+
+.umi/
+tmp
+tmp-production
